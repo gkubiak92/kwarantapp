@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kwarantapp/providers/measurement_provider.dart';
-import 'package:kwarantapp/screens/home.dart';
-import 'package:kwarantapp/screens/rules.dart';
+import 'package:kwarantapp/screens/home/home.dart';
+import 'package:kwarantapp/screens/rules/rules.dart';
+import 'package:kwarantapp/theme/style.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/Measurements/measurements_screen.dart';
@@ -17,9 +18,7 @@ class MyApp extends StatelessWidget {
       create: (_) => MeasurementProvider(),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: appTheme(),
         home: HomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),

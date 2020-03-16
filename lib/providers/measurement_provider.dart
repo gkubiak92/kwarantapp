@@ -8,11 +8,14 @@ class MeasurementProvider with ChangeNotifier {
       id: 'blablalba',
       date: DateTime.now(),
       temperature: 36.6,
+      cough: true,
     ),
     Measurement(
       id: 'blablalba',
       date: DateTime.now(),
       temperature: 38.6,
+      cough: true,
+      fever: true,
     ),
     Measurement(
       id: 'blablalba',

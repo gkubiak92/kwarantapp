@@ -18,23 +18,25 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
       return;
     }
 
+    _measurement.date = DateTime.now();
     _formKey.currentState.save();
     Provider.of<MeasurementProvider>(context, listen: false)
         .addMeasurement(_measurement);
     _measurement = Measurement();
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
       child: Form(
         key: _formKey,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             TextFormField(
               textAlign: TextAlign.center,
-              decoration: InputDecoration(hintText: 'Temperatura'),
+              decoration: InputDecoration(hintText: 'Podaj temperaturę'),
               keyboardType: TextInputType.number,
               validator: (value) {
                 if (value.isEmpty) {
@@ -46,6 +48,7 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
             ),
             CheckboxListTile(
               title: Text('Kaszel'),
+              activeColor: Theme.of(context).primaryColor,
               value: _measurement.cough,
               onChanged: (value) {
                 setState(() {
@@ -55,6 +58,7 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
             ),
             CheckboxListTile(
               title: Text('Gorączka'),
+              activeColor: Theme.of(context).primaryColor,
               value: _measurement.fever,
               onChanged: (value) {
                 setState(() {
@@ -64,6 +68,7 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
             ),
             CheckboxListTile(
               title: Text('Duszności'),
+              activeColor: Theme.of(context).primaryColor,
               value: _measurement.shortBreath,
               onChanged: (value) {
                 setState(() {
@@ -72,7 +77,11 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
               },
             ),
             RaisedButton(
-              child: Text('Dodaj'),
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                'Dodaj',
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
               onPressed: submitForm,
             ),
           ],

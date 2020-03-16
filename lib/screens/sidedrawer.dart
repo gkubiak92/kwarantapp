@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwarantapp/screens/rules.dart';
+import 'package:kwarantapp/screens/rules/rules.dart';
 
 import 'Measurements/measurements_screen.dart';
 
