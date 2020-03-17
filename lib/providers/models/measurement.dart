@@ -5,6 +5,8 @@ class Measurement {
   bool cough;
   bool fever;
   bool shortBreath;
+  bool musclePain;
+  bool fatigue;
 
   Measurement({
     this.id,
@@ -13,5 +15,7 @@ class Measurement {
     this.cough = false,
     this.fever = false,
     this.shortBreath = false,
+    this.musclePain = false,
+    this.fatigue = false,
   });
 }

@@ -23,12 +23,12 @@ class HomeCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
-            width: 120,
-            height: 140,
+            width: 140,
+            height: 180,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                image,
+                Expanded(child: image),
                 Text(
                   title,
                   textAlign: TextAlign.center,

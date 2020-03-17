@@ -57,97 +57,125 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd.MM.yyyy');
+    var dateFormat = DateFormat('dd.MM');
     final measurementDate = dateFormat.format(_selectedDate);
     var timeFormat = DateFormat('HH:mm');
     final measurementTime = timeFormat.format(_selectedDate);
 
-    return Container(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(measurementDate),
-                IconButton(
-                  icon: Icon(Icons.calendar_today),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () => _selectDate(context),
-                ),
-                Text(measurementTime),
-                IconButton(
-                  icon: Icon(Icons.timelapse),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () => _selectTime(context),
-                ),
-              ],
-            ),
-            TextFormField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(hintText: 'Podaj temperaturę'),
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                if (double.parse(value) >= 38.0) {
-                  print('dupa');
-                  setState(() {
-                    _measurement.fever = true;
-                  });
-                } else {
-                  setState(() {
-                    _measurement.fever = false;
-                  });
-                }
-              },
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Wprowadź temperaturę';
-                }
-              },
-              onSaved: (value) => setState(
-                  () => _measurement.temperature = double.parse(value)),
-            ),
-            CheckboxListTile(
-              title: Text('Kaszel'),
-              activeColor: Theme.of(context).primaryColor,
-              value: _measurement.cough,
-              onChanged: (value) {
-                setState(() {
-                  _measurement.cough = value;
-                });
-              },
-            ),
-            CheckboxListTile(
-              title: Text('Gorączka'),
-              activeColor: Theme.of(context).primaryColor,
-              value: _measurement.fever,
-              onChanged: (value) {
-                setState(() {
-                  _measurement.fever = value;
-                });
-              },
-            ),
-            CheckboxListTile(
-              title: Text('Duszności'),
-              activeColor: Theme.of(context).primaryColor,
-              value: _measurement.shortBreath,
-              onChanged: (value) {
-                setState(() {
-                  _measurement.shortBreath = value;
-                });
-              },
-            ),
-            RaisedButton(
-              color: Theme.of(context).primaryColor,
-              child: Text(
-                'Dodaj',
-                style: Theme.of(context).textTheme.subtitle2,
+    return SingleChildScrollView(
+      child: Container(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(measurementDate),
+                  IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () => _selectDate(context),
+                  ),
+                  Text(measurementTime),
+                  IconButton(
+                    icon: Icon(Icons.timelapse),
+                    color: Theme.of(context).primaryColor,
+                    onPressed: () => _selectTime(context),
+                  ),
+                ],
               ),
-              onPressed: submitForm,
-            ),
-          ],
+              TextFormField(
+                textAlign: TextAlign.center,
+                decoration: InputDecoration(hintText: 'Podaj temperaturę'),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  if (double.parse(value) >= 38.0) {
+                    print('dupa');
+                    setState(() {
+                      _measurement.fever = true;
+                    });
+                  } else {
+                    setState(() {
+                      _measurement.fever = false;
+                    });
+                  }
+                },
+                validator: (value) {
+                  double temp = double.parse(value);
+                  if (value.isEmpty) {
+                    return 'Wprowadź temperaturę';
+                  } else if (temp < 20) {
+                    return 'Wprowadź poprawną temperaturę';
+                  } else if (temp > 45) {
+                    return 'Wprowadź poprawną temperaturę';
+                  }
+                },
+                onSaved: (value) => setState(
+                    () => _measurement.temperature = double.parse(value)),
+              ),
+              CheckboxListTile(
+                title: Text('Kaszel'),
+                activeColor: Theme.of(context).primaryColor,
+                value: _measurement.cough,
+                onChanged: (value) {
+                  setState(() {
+                    _measurement.cough = value;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: Text('Gorączka'),
+                activeColor: Theme.of(context).primaryColor,
+                value: _measurement.fever,
+                onChanged: (value) {
+                  setState(() {
+                    _measurement.fever = value;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: Text('Duszności'),
+                activeColor: Theme.of(context).primaryColor,
+                value: _measurement.shortBreath,
+                onChanged: (value) {
+                  setState(() {
+                    _measurement.shortBreath = value;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: Text('Bóle mięśni'),
+                activeColor: Theme.of(context).primaryColor,
+                value: _measurement.musclePain,
+                onChanged: (value) {
+                  setState(() {
+                    _measurement.musclePain = value;
+                  });
+                },
+              ),
+              CheckboxListTile(
+                title: Text('Zmęczenie'),
+                activeColor: Theme.of(context).primaryColor,
+                value: _measurement.fatigue,
+                onChanged: (value) {
+                  setState(() {
+                    _measurement.fatigue = value;
+                  });
+                },
+              ),
+              RaisedButton(
+                color: Theme.of(context).primaryColor,
+                child: Text(
+                  'Dodaj',
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
+                onPressed: submitForm,
+              ),
+            ],
+          ),
         ),
       ),
     );
