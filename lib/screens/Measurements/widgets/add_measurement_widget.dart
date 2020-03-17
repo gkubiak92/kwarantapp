@@ -12,7 +12,9 @@ class AddMeasurementWidget extends StatefulWidget {
 class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
   final _formKey = GlobalKey<FormState>();
   DateTime _selectedDate = DateTime.now();
-  var _measurement = Measurement();
+  var _measurement = Measurement(
+    id: DateTime.now().toString(),
+  );
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(

@@ -16,23 +16,32 @@ class MeasurementsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Lista pomiarów'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.all(20.0),
-              children: measurementList
-                  .map(
-                    (measurement) => MeasurementWidget(
-                      measurement: measurement,
-                    ),
-                  )
-                  .toList(),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Theme.of(context).primaryColor, Colors.redAccent],
           ),
-          //AddMeasurementWidget(),
-        ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.all(20.0),
+                children: measurementList
+                    .map(
+                      (measurement) => MeasurementWidget(
+                        measurement: measurement,
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            //AddMeasurementWidget(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,

@@ -11,14 +11,14 @@ class MeasurementProvider with ChangeNotifier {
       cough: true,
     ),
     Measurement(
-      id: 'blablalba',
+      id: 'blasd12a',
       date: DateTime.now(),
       temperature: 38.6,
       cough: true,
       fever: true,
     ),
     Measurement(
-      id: 'blablalba',
+      id: 'blablasf12fsfdfalba',
       date: DateTime.now(),
       temperature: 36.8,
     ),
@@ -31,6 +31,11 @@ class MeasurementProvider with ChangeNotifier {
 
   void addMeasurement(Measurement measurement) {
     _measurementList.add(measurement);
+    notifyListeners();
+  }
+
+  void removeMeasurement(String id) {
+    _measurementList.removeWhere((measurement) => measurement.id == id);
     notifyListeners();
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kwarantapp/providers/measurement_provider.dart';
+import 'package:kwarantapp/screens/contact/contact_screen.dart';
 import 'package:kwarantapp/screens/home/home.dart';
-import 'package:kwarantapp/screens/rules/rules.dart';
+import 'package:kwarantapp/screens/rules/rules_screen.dart';
 import 'package:kwarantapp/theme/style.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +27,9 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           HomeScreen.routeName: (context) => HomeScreen(),
-          Rules.routeName: (context) => Rules(),
+          RulesScreen.routeName: (context) => RulesScreen(),
           MeasurementsScreen.routeName: (context) => MeasurementsScreen(),
+          ContactScreen.routeName: (context) => ContactScreen(),
         },
       ),
     );

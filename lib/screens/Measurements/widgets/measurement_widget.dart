@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kwarantapp/providers/measurement_provider.dart';
 import 'package:kwarantapp/providers/models/measurement.dart';
 import 'package:intl/intl.dart';
 import 'package:kwarantapp/screens/measurements/widgets/symptom_icon.dart';
+import 'package:provider/provider.dart';
 
 class MeasurementWidget extends StatelessWidget {
   final Measurement measurement;
@@ -21,12 +23,14 @@ class MeasurementWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat('dd.MM.yyyy HH:mm:ss');
+    DateFormat dateFormat = DateFormat('dd-MM-yyyy HH:mm');
     final String measurementDate = dateFormat.format(measurement.date);
     final bool hasSymptoms = checkSymptoms();
+    final measurementProvider =
+        Provider.of<MeasurementProvider>(context, listen: false);
 
     return Card(
-      elevation: 8.0,
+      elevation: 10.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.0),
@@ -35,8 +39,45 @@ class MeasurementWidget extends StatelessWidget {
       ),
       child: Column(
         children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              GestureDetector(
+                child: Icon(
+                  Icons.delete,
+                  color: Theme.of(context).primaryColor,
+                ),
+                onTap: () => showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Usunięcie pomiaru'),
+                      content: Text('Jesteś pewien?'),
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: () {
+                            measurementProvider
+                                .removeMeasurement(measurement.id);
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Tak'),
+                        ),
+                        FlatButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: Text('Nie'),
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ],
+                      elevation: 24.0,
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -44,7 +85,7 @@ class MeasurementWidget extends StatelessWidget {
                   measurement.temperature.toString(),
                   style: TextStyle(
                     fontSize: 32,
-                    color: measurement.temperature <= 38.0
+                    color: measurement.temperature < 38.0
                         ? Colors.greenAccent
                         : Colors.redAccent,
                   ),
@@ -58,13 +99,6 @@ class MeasurementWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.delete,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {},
-                )
               ],
             ),
           ),

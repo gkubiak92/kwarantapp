@@ -4,10 +4,20 @@ import 'package:kwarantapp/screens/home/home.dart';
 import 'package:kwarantapp/screens/rules/widgets/rule_desc.dart';
 import 'package:kwarantapp/screens/rules/widgets/rule_title.dart';
 
-class Rules extends StatelessWidget {
+class RulesScreen extends StatelessWidget {
   static const routeName = '/rules';
 
   final pageList = [
+    PageModel(
+      title: RuleTitle(title: 'Nie opuszczaj domu'),
+      color: Colors.deepOrangeAccent,
+      body: RuleDescription(
+        description:
+            'Na czas trwania kwarantanny zostań w domu. Odpocznij, poczytaj, pograj, nadrób zalegości w serialach. Rób na co masz ochotę, ale w domu.',
+      ),
+      iconAssetPath: 'assets/fall.png',
+      heroAssetPath: 'assets/fall.png',
+    ),
     PageModel(
       title: RuleTitle(title: 'MyjRęce'),
       color: Colors.indigoAccent,
@@ -22,7 +32,7 @@ class Rules extends StatelessWidget {
       title: RuleTitle(
         title: 'Zakrywaj się',
       ),
-      color: Colors.redAccent,
+      color: Colors.deepPurpleAccent,
       body: RuleDescription(
         description:
             'Podczas kichania lub kasłania staraj się zakrywać lub odruchowo kierować ruch w zgięcie łokciowe!',
@@ -32,15 +42,15 @@ class Rules extends StatelessWidget {
     ),
     PageModel(
       title: RuleTitle(
-        title: 'Zostań w domu',
+        title: 'Grzywna za nieprzestrzeganie kwarantanny',
       ),
-      color: Colors.orangeAccent,
+      color: Colors.redAccent,
       body: RuleDescription(
         description:
-            'Najważniejsze jest działanie prewencyjne. Zostań w domu w gronie najbliższych i nie wychodź nigdzie jeśli nie musisz!',
+            'Za nieprzestrzeganie kwarantanny grozi grzywna do 5 tys. zł!',
       ),
-      iconAssetPath: 'assets/wash.png',
-      heroAssetPath: 'assets/wash.png',
+      iconAssetPath: 'assets/sad.png',
+      heroAssetPath: 'assets/sad.png',
     ),
   ];
 

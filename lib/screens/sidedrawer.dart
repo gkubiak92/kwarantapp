@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwarantapp/screens/rules/rules.dart';
+import 'package:kwarantapp/screens/rules/rules_screen.dart';
 
 import 'Measurements/measurements_screen.dart';
 
@@ -18,7 +18,7 @@ class SideDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.report),
             title: Text('Zasady kwarantanny'),
-            onTap: () => Navigator.of(context).pushNamed(Rules.routeName),
+            onTap: () => Navigator.of(context).pushNamed(RulesScreen.routeName),
           ),
           ListTile(
             leading: Icon(Icons.web),

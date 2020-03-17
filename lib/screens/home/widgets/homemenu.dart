@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kwarantapp/screens/contact/contact_screen.dart';
 import 'package:kwarantapp/screens/measurements/measurements_screen.dart';
-import 'package:kwarantapp/screens/rules/rules.dart';
+import 'package:kwarantapp/screens/rules/rules_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'homecard.dart';
@@ -40,7 +41,8 @@ class HomeMenu extends StatelessWidget {
                 height: 80,
                 fit: BoxFit.contain,
               ),
-              onTap: () => Navigator.of(context).pushNamed(Rules.routeName),
+              onTap: () =>
+                  Navigator.of(context).pushNamed(RulesScreen.routeName),
             ),
             HomeCard(
               title: 'Pomiary',
@@ -68,7 +70,8 @@ class HomeMenu extends StatelessWidget {
                 fit: BoxFit.contain,
                 height: 80,
               ),
-              onTap: () {},
+              onTap: () =>
+                  Navigator.of(context).pushNamed(ContactScreen.routeName),
             ),
           ],
         ),
