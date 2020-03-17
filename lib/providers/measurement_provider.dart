@@ -25,7 +25,7 @@ class MeasurementProvider with ChangeNotifier {
   ];
 
   List<Measurement> get measurementList {
-    _measurementList.sort((a, b) => a.date.compareTo(b.date));
+    _measurementList.sort((a, b) => b.date.compareTo(a.date));
     return _measurementList;
   }
 

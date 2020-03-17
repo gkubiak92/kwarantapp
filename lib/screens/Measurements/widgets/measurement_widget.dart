@@ -9,7 +9,7 @@ class MeasurementWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateFormat = DateFormat('dd.MM.yyyy HH:mm');
+    var dateFormat = DateFormat('dd.MM.yyyy HH:mm:ss');
     final measurementDate = dateFormat.format(measurement.date);
 
     return Card(

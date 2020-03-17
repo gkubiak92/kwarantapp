@@ -16,10 +16,11 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
 
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: _selectedDate,
-        firstDate: DateTime(2019, 8),
-        lastDate: DateTime(2101));
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2019, 8),
+      lastDate: DateTime.now(),
+    );
     if (picked != null && picked != _selectedDate)
       setState(() {
         _selectedDate = picked;
@@ -46,6 +47,7 @@ class _AddMeasurementWidgetState extends State<AddMeasurementWidget> {
       return;
     }
 
+    _measurement.date = _selectedDate;
     _formKey.currentState.save();
     Provider.of<MeasurementProvider>(context, listen: false)
         .addMeasurement(_measurement);
