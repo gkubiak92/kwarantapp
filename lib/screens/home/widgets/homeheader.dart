@@ -6,22 +6,17 @@ class HomeHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 200,
-      color: Theme.of(context).primaryColor,
+      //color: Theme.of(context).primaryColor,
+      color: Colors.transparent,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 10.0,
-          horizontal: 20.0,
-        ),
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 24.0),
-              child: Text(
-                'KwarantApp',
-                style: Theme.of(context).textTheme.headline1,
-              ),
+            Text(
+              'kwarantApp',
+              style: Theme.of(context).textTheme.headline1,
             ),
           ],
         ),

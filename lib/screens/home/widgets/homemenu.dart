@@ -18,6 +18,16 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      //child: Container(
+      //color: Theme.of(context).primaryColor,
+      // child: Container(
+      //   decoration: BoxDecoration(
+      //     color: Colors.white,
+      //     borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(20.0),
+      //       topRight: Radius.circular(20.0),
+      //     ),
+      //   ),
       child: Padding(
         padding: EdgeInsets.all(20.0),
         child: GridView.count(

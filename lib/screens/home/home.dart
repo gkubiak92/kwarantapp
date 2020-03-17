@@ -9,11 +9,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          HomeHeader(),
-          HomeMenu(),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Theme.of(context).primaryColor, Colors.redAccent],
+          ),
+        ),
+        child: Column(
+          children: <Widget>[
+            HomeHeader(),
+            HomeMenu(),
+          ],
+        ),
       ),
     );
   }
